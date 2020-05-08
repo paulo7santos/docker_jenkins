@@ -37,7 +37,7 @@ pam-auth:1.6
 gitlab-hook:1.4.2
 workflow-support:3.3
 pipeline-milestone-step:1.3.1
-kubernetes:1.21.2
+kubernetes:1.24.1
 rebuild:1.31
 blueocean-bitbucket-pipeline:1.19.0
 git:4.0.0
@@ -126,7 +126,7 @@ jenkins-multijob-plugin:1.32
 maven-plugin:3.4
 blueocean-commons:1.19.0
 pipeline-stage-tags-metadata:1.4.0
-copyartifact:1.43
+copyartifact:1.44
 ssh-agent:1.17
 active-directory:2.16
 nodejs:1.3.4
