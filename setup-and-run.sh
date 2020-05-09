@@ -32,9 +32,16 @@ fi
 if [ ! -d jobs ]; then
     mkdir jobs
 fi
+if [ ! -d jenkins_config]; then
+    mkdir jenkins_config
+fi
+if [ ! -d jenkins_home]; then
+    mkdir jenkins_home
+fi
 
 docker run -d -p ${jenkins_port}:8080 \
     -v `pwd`/jenkins_backup:/srv/backup \
+    -v `pwd`/jenkins_home:/var/jenkins_home \
     --name ${container_name} \
     ${dockerhub_user}/${image_name}:${image_version}     
   #  -v `pwd`/jenkins_downloads:/var/jenkins_home/downloads \
