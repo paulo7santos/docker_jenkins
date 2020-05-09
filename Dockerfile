@@ -12,3 +12,7 @@ RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 # Auto Configuration Scripts
 COPY groovy/* /usr/share/jenkins/ref/init.groovy.d/
 COPY config/*.properties ${JENKINS_HOME}/config/
+
+# JDK Setup
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+COPY --chown=jenkins:jenkins config_jenkins /var/jenkins_home

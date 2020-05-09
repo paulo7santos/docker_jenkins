@@ -3,18 +3,20 @@
 dockerhub_user=paulo7santos
 
 jenkins_port=8080
-image_name=jenkins-200
-image_version=2.0.0
-container_name=jenkins-200
+image_name=jenkins-devops
+image_version=5.0.0
+container_name=jenkins-500
 
 docker pull jenkins:2.204
 
-if [ ! -d downloads ]; then
-    mkdir downloads
-    curl -o downloads/jdk-8u144-linux-x64.tar.gz http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz
-    curl -o downloads/jdk-7u80-linux-x64.tar.gz http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz
-    curl -o downloads/apache-maven-3.5.2-bin.tar.gz http://mirror.vorboss.net/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
-fi
+# if [ ! -d downloads ]; then
+#     mkdir downloads
+#     curl -o downloads/jdk-8u144-linux-x64.tar.gz http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz
+#     curl -o downloads/jdk-7u80-linux-x64.tar.gz http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz
+#     curl -o downloads/apache-maven-3.5.2-bin.tar.gz http://mirror.vorboss.net/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+# fi
+
+
 
 docker stop ${container_name}
 
