@@ -3,11 +3,11 @@
 dockerhub_user=paulo7santos
 
 jenkins_port=8080
-image_name=missao-devops-jenkins
+image_name=jenkins-200
 image_version=2.0.0
-container_name=md-jenkins
+container_name=jenkins-200
 
-docker pull jenkins:2.112
+docker pull jenkins:2.204
 
 if [ ! -d downloads ]; then
     mkdir downloads
@@ -30,10 +30,14 @@ if [ ! -d jobs ]; then
     mkdir jobs
 fi
 
-docker run -p ${jenkins_port}:8080 \
+docker run -d -p ${jenkins_port}:8080 \
     -v `pwd`/downloads:/var/jenkins_home/downloads \
     -v `pwd`/jobs:/var/jenkins_home/jobs/ \
     -v `pwd`/m2deps:/var/jenkins_home/.m2/repository/ \
     -v $HOME/.ssh:/var/jenkins_home/.ssh/ \
     --rm --name ${container_name} \
     ${dockerhub_user}/${image_name}:${image_version}
+
+echo "SUCCESSFUL!" 
+
+exit
