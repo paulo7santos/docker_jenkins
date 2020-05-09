@@ -7,7 +7,7 @@ image_name=jenkins-devops
 image_version=5.0.0
 container_name=jenkins-500
 
-docker pull jenkins:2.204
+docker pull jenkins/jenkins:2.204
 
 # if [ ! -d downloads ]; then
 #     mkdir downloads
@@ -20,7 +20,8 @@ docker pull jenkins:2.204
 
 docker stop ${container_name}
 
-docker build --no-cache -t ${dockerhub_user}/${image_name}:${image_version} .
+# docker build --no-cache -t ${dockerhub_user}/${image_name}:${image_version} .
+docker build -t ${dockerhub_user}/${image_name}:${image_version} .
 
 if [ ! -d m2deps ]; then
     mkdir m2deps
@@ -33,12 +34,18 @@ if [ ! -d jobs ]; then
 fi
 
 docker run -d -p ${jenkins_port}:8080 \
-    -v `pwd`/downloads:/var/jenkins_home/downloads \
-    -v `pwd`/jobs:/var/jenkins_home/jobs/ \
-    -v `pwd`/m2deps:/var/jenkins_home/.m2/repository/ \
-    -v $HOME/.ssh:/var/jenkins_home/.ssh/ \
-    --rm --name ${container_name} \
-    ${dockerhub_user}/${image_name}:${image_version}
+    -v `pwd`/jenkins_backup:/srv/backup \
+    --name ${container_name} \
+    ${dockerhub_user}/${image_name}:${image_version}     
+  #  -v `pwd`/jenkins_downloads:/var/jenkins_home/downloads \
+  #  -v `pwd`/jenkins_jobs:/var/jenkins_home/jobs/ \
+  #  -v `pwd`/jenkins_m2deps:/var/jenkins_home/.m2/repository/ \
+  #  -v $HOME/.ssh:/var/jenkins_home/.ssh/ \
+  #  -v `pwd`/jenkins_home:/var/jenkins_home \
+  #  -v `pwd`/jenkins_backup:/srv/backup \
+  #  -v `pwd`/jenkins_logs:/var/log/jenkins/jenkins.log \
+    
+     
 
 echo "SUCCESSFUL!" 
 
