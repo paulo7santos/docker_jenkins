@@ -4,8 +4,8 @@ dockerhub_user=paulo7santos
 
 jenkins_port=8080
 image_name=jenkins-devops
-image_version=5.0.0
-container_name=jenkins-500
+image_version=0.5.1
+container_name=jenkins-051
 
 docker pull jenkins/jenkins:2.204
 
